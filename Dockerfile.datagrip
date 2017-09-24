@@ -1,0 +1,10 @@
+FROM justinvanwinkle/dev-base:latest
+LABEL maintainer "vanwinkle.justin@gmail.com"
+
+# Download and extract datagrip
+RUN cd /opt && \
+    mkdir datagrip && \
+    cd datagrip && \
+    curl -L `echo -n \`curl -s 'https://data.services.jetbrains.com/products/releases?code=DG&latest=true&type=eap' | jq -r '.DG[0].downloads.linux.link'\`` | \
+    tar xz && \
+    mv ./*/* ./
